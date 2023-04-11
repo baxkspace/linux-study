@@ -1,3 +1,9 @@
+/* 
+	#1: have to add features - slow down/speed up coordinate of the ball
+	#2: fix errors - if ball touches boundaries, speed of the ball should be double/half
+	so how? tlqkf...
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <curses.h>
