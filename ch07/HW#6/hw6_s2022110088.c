@@ -1,7 +1,7 @@
 /* 
-	#1: have to add features - slow down/speed up coordinate of the ball
-	#2: fix errors - if ball touches boundaries, speed of the ball should be double/half
-	so how? tlqkf...
+	#1: when row/col of the ball is bigger than boundaries... 
+		it breaks walls
+	#2: slow down coordinate of the ball
 */
 
 #include <stdio.h>
