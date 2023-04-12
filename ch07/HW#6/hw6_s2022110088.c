@@ -1,9 +1,3 @@
-/* 
-	#1: when row/col of the ball is bigger than boundaries... 
-		it breaks walls
-	#2: slow down coordinate of the ball
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <curses.h>
@@ -60,8 +54,8 @@ void move_ball(int signum) {
 	if (row >= endrow || row <= startrow) {
 		ndelay = delay * 2;
 		row_dir = -row_dir;
-		//set_ticker(ndelay);
-		//delay = ndelay;
+		set_ticker(ndelay);
+		delay = ndelay;
 	}
 	if (col >= endcol || col <= startcol) {
 		ndelay = delay / 2;
