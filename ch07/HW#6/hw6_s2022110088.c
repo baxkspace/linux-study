@@ -1,3 +1,9 @@
+/* 
+	#1: when row/col of the ball is bigger than boundaries... 
+		it breaks walls
+	#2: slow down coordinate of the ball
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <curses.h>
@@ -48,7 +54,10 @@ void move_ball(int signum) {
 	move(row, col);
 		
 	if (row <= endrow && row >= startrow && col <= endcol && col >= startcol)
+	{	
 		addstr(ball);
+		move(LINES - 1, 0);
+	}
 	refresh();
 
 	if (row >= endrow || row <= startrow) {
@@ -96,8 +105,14 @@ int main(int argc, char* argv[]) {
 		ndelay = 0;
 		c = getch();
 		if (c == 'Q') break;
-		if (c == 'q') col_dir /= 2;
-		if (c == 'w') row_dir /= 2;
+		if (c == 'q') {
+			if (col_dir > 1)
+				col_dir /= 2;
+		}
+		if (c == 'w') {
+			if (row_dir > 1)
+				row_dir /= 2;
+		}
 		if (c == 'e') col_dir *= 2;
 		if (c == 'r') row_dir *= 2;
 	}
