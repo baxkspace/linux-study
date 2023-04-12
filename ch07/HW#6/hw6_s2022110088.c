@@ -42,15 +42,26 @@ void move_ball(int signum) {
 	addstr(BLANK);
 	col += col_dir;
 	row += row_dir;
+	
+	if (row > endrow)
+		row = endrow;
+	else if (row < startrow)
+		row = startrow;
+	else if (col > endcol)
+		col = endcol;
+	else if (col < startcol)
+		col = startcol;
 	move(row, col);
-	addstr(ball);
+		
+	if (row <= endrow && row >= startrow && col <= endcol && col >= startcol)
+		addstr(ball);
 	refresh();
 
 	if (row >= endrow || row <= startrow) {
 		ndelay = delay * 2;
 		row_dir = -row_dir;
-		set_ticker(ndelay);
-		delay = ndelay;
+		//set_ticker(ndelay);
+		//delay = ndelay;
 	}
 	if (col >= endcol || col <= startcol) {
 		ndelay = delay / 2;
