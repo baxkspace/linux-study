@@ -5,7 +5,7 @@
 #include <sys/time.h>
 #include <signal.h>
 
-#define BLANK "       "
+#define BLANK " "
 
 int delay = 500, ndelay = 0;
 char* ball;
@@ -40,15 +40,17 @@ void move_ball(int signum) {
 	addstr(ball);
 	refresh();
 
-	if (row == endrow || row == startrow) {
+	if (row >= endrow || row <= startrow) {
 		ndelay = delay * 2;
 		row_dir = -row_dir;
-		refresh();
-		}
-	if (col == endcol || col == startcol) {
+		set_ticker(ndelay);
+		delay = ndelay;
+	}
+	if (col >= endcol || col <= startcol) {
 		ndelay = delay / 2;
 		col_dir = -col_dir;
-		refresh();
+		set_ticker(ndelay);
+		delay = ndelay;
 	}
 }
 
@@ -64,15 +66,12 @@ int main(int argc, char* argv[]) {
 	endcol = atoi(argv[7]);
 	void move_msg(int);
 
+	initscr();
 	crmode();
 	noecho();
 	clear();
 
-	
-	initscr();
-	clear();
 	draw_bound(startrow - 1, endrow + 1, startcol - 1, endcol + 1);
-	//refresh();
 
 	row = atoi(argv[2]);
 	col = atoi(argv[3]);
@@ -83,17 +82,13 @@ int main(int argc, char* argv[]) {
 	set_ticker(delay);
 	
 	while(true) {
-		//ndelay = 0;
+		ndelay = 0;
 		c = getch();
 		if (c == 'Q') break;
 		if (c == 'q') col_dir /= 2;
 		if (c == 'w') row_dir /= 2;
 		if (c == 'e') col_dir *= 2;
 		if (c == 'r') row_dir *= 2;
-		if (ndelay > 0) {
-			set_ticker(ndelay);
-			delay = ndelay;
-		}
 	}
 	endwin();
 	return 0; 
