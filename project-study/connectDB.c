@@ -31,7 +31,7 @@ int main(int argc, char* agrv[])
     //sql object, host, user, passwd, db, port, socket, flag
     //connect to server
     //return pointer at success, return NULL at failed
-    if(!mysql_real_connect(&conn_ptr, "127.0.0.1", "root", "root", "testDB", 0, NULL, 0))
+    if(!mysql_real_connect(&conn_ptr, "127.0.0.1", "root", "rootroot", "testDB", 0, NULL, 0))
     {
         printf("%s\n", mysql_error(&conn_ptr));
         exit(1);
