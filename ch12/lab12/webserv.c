@@ -140,7 +140,7 @@ void do_cat(char* f, int fd) {
 	else if(strcmp(exetension, "html") == 0)
 		content = "image/gif";
 	else if (strcmp(exetension, "jpg") == 0)
-		content = "image/jpeg";
+		content = "image/jpg";
 	else if (strcmp(exetension, "jpeg") == 0)
 		content = "image/jpeg";
 
